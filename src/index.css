@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: #101114; /* Page background; hero gradient endpoint */
+  --color-surface: #191b20; /* Inputs, neutral buttons, genre pills */
+  --color-surface-elevated: #22252b; /* Dropdowns, tooltips, notifications */
+  --color-surface-hover: #2c3038; /* Hovered controls; highlighted menu rows */
+
+  --color-foreground: #f5f5f5; /* Main text and icons */
+  --color-muted: #a8a8ae; /* Descriptions, years, secondary text */
+
+  --color-border: #383c45; /* Default borders and dividers */
+  --color-border-hover: #676d79; /* Hovered control borders */
+
+  --color-primary: #f4b544; /* Primary buttons, selected filters, saved icons, ratings, focus rings */
+  --color-primary-hover: #ffd06a; /* Primary button hover */
+  --color-on-primary: #101114; /* Text and icons on amber backgrounds */
+
+  --color-danger: #f08080; /* Error text and icons */
+
+  --font-sans: "Inter", sans-serif;
+  --font-barlow: "Barlow Condensed", sans-serif;
+}
