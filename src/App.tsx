@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
-import HomePage from "./Pages/HomePage";
-import MoviesPage from "./Pages/MoviesPage";
-import NotFoundPage from "./Pages/NotFoundPage";
+import HomePage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (

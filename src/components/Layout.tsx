@@ -3,9 +3,7 @@ import { Header } from "./Header/Header";
 
 export function Layout() {
   return (
-    <div className="bg-background relative isolate min-h-dvh">
-      {/* will probably have to move in the homepage component */}
-
+    <div className="bg-background relative isolate min-h-dvh px-15">
       <Header />
 
       <main>
