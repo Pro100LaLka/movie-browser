@@ -9,6 +9,8 @@ import type { Sorting } from "../types";
 import { useEffect, useState } from "react";
 import { formatRating } from "../utils/format";
 import StarIcon from "../components/icons/StarIcon";
+import InfoIcon from "../components/icons/InfoIcon";
+import BookmarkIcon from "../components/icons/BookmarkIcon";
 
 const heroMovieNumber = 0;
 
@@ -93,6 +95,16 @@ function HomePage() {
             <p className="text-muted mt-3 line-clamp-2 max-w-1/3">
               {heroMovieSum.overview}
             </p>
+            <div className="mt-4 flex gap-5">
+              <button className="text-on-primary hover:bg-primary-hover bg-primary active:bg-primary-active flex items-center gap-4 rounded-lg px-7 py-3 font-semibold">
+                <InfoIcon />
+                View details
+              </button>
+              <button className="text-foreground hover:bg-surface-hover bg-surface ring-border hover:ring-border-hover active:bg-surface-active active:ring-border-active flex items-center gap-4 rounded-lg px-7 py-3 font-semibold ring-2 ring-inset">
+                <BookmarkIcon />
+                Add to watchlist
+              </button>
+            </div>
           </>
         )}
         {moviesQuery.error && (

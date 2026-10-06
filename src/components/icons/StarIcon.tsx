@@ -1,7 +1,7 @@
 function StarIcon() {
   return (
     <svg
-      className="text-primary size-6"
+      className="text-primary size-[1.5em]"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 640"
