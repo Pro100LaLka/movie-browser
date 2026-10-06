@@ -1,9 +1,9 @@
-import type { Sorting } from "../types";
+import type { MovieSort } from "../constants/movies";
 import type {
   GenreResponse,
   MovieDetails,
   MoviesResponse,
-} from "./movies.types";
+} from "../types/movies";
 
 export async function fetchMovieGenres(): Promise<GenreResponse> {
   const response = await fetch(
@@ -14,7 +14,7 @@ export async function fetchMovieGenres(): Promise<GenreResponse> {
 }
 
 export async function fetchMovies(
-  sorting: Sorting,
+  sorting: MovieSort,
   page: number,
 ): Promise<MoviesResponse> {
   let urlEnding = "";

@@ -1,4 +1,7 @@
-import type { Genre } from "../types";
+export interface Genre {
+  id: number;
+  name: string;
+}
 
 export interface GenreResponse {
   genres: Genre[];
@@ -14,7 +17,7 @@ interface MovieBase {
   vote_average: number;
 }
 
-interface MovieSummary extends MovieBase {
+export interface MovieSummary extends MovieBase {
   genre_ids: number[];
 }
 
@@ -27,5 +30,5 @@ export interface MoviesResponse {
 export interface MovieDetails extends MovieBase {
   genres: Genre[];
   imdb_id: string;
-  tagline: string;
+  tagline: string | null;
 }
