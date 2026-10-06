@@ -23,17 +23,24 @@ function HomePage() {
     queryFn: () => fetchMovies(sorting, pages),
   });
 
-  const heroMovie = moviesQuery.data?.results[1];
+  const heroMovieSum = moviesQuery.data?.results[0];
 
   const heroMovieQuery = useQuery({
-    queryKey: ["movie", heroMovie?.id],
+    queryKey: ["movie", heroMovieSum?.id],
     queryFn: () => {
-      if (heroMovie?.id === undefined) throw new Error("Missing hero movie ID");
+      if (heroMovieSum?.id === undefined)
+        throw new Error("Missing hero movie ID");
 
-      return fetchMovieDetails(heroMovie.id);
+      return fetchMovieDetails(heroMovieSum.id);
     },
-    enabled: heroMovie?.id !== undefined,
+    enabled: heroMovieSum?.id !== undefined,
   });
+
+  const heroMovieDet = heroMovieQuery.data;
+
+  useEffect(() => {
+    console.log(genresQuery.data);
+  }, [genresQuery.data]);
 
   useEffect(() => {
     console.log(moviesQuery.data);
@@ -45,19 +52,43 @@ function HomePage() {
 
   return (
     <>
-      {heroMovie?.backdrop_path && (
-        <HomeBackground src={heroMovie?.backdrop_path} />
+      {heroMovieSum?.backdrop_path && (
+        <HomeBackground src={heroMovieSum?.backdrop_path} />
       )}
       <div className="flex h-120 max-w-2/3 flex-col items-start justify-center">
-        {moviesQuery.data && (
+        {heroMovieSum && (
           <>
-            <p className="text-muted h-7 text-sm uppercase">
-              {heroMovieQuery.data?.tagline}
+            <p className="text-muted h-5 text-sm uppercase">
+              {heroMovieDet?.tagline}
             </p>
             <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
-              {heroMovie?.title}
+              {heroMovieSum.title}
             </h1>
+            <div className="text-foreground mt-2 flex gap-5">
+              <p className="">{heroMovieSum.release_date.slice(0, 4)}</p>
+              <span className="font-serif">|</span>
+              {heroMovieDet && (
+                <>
+                  <ul className="flex gap-5">
+                    {heroMovieDet.genres.map((genre) => (
+                      <li>{genre.name}</li>
+                    ))}
+                  </ul>
+                  <span className="font-serif">|</span>
+                </>
+              )}
+            </div>
           </>
+        )}
+        {moviesQuery.error && (
+          <h1 className="text-foreground flex h-full items-center justify-center text-7xl">
+            Error occured while fetching the movies
+          </h1>
+        )}
+        {moviesQuery.isLoading && (
+          <h1 className="text-foreground flex h-full items-center justify-center text-7xl">
+            Loading...
+          </h1>
         )}
       </div>
       <ul className="text-foreground flex gap-2">

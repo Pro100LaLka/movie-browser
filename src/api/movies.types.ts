@@ -1,13 +1,10 @@
-interface Genre {
-  id: number;
-  name: string;
-}
+import type { Genre } from "../types";
 
 export interface GenreResponse {
   genres: Genre[];
 }
 
-interface Movie {
+interface MovieBase {
   backdrop_path: string;
   id: number;
   title: string;
@@ -17,13 +14,17 @@ interface Movie {
   vote_average: number;
 }
 
-export interface MovieResponse {
+interface MovieSummary extends MovieBase {
+  genre_ids: number[];
+}
+
+export interface MoviesResponse {
   page: number;
-  results: Movie[];
+  results: MovieSummary[];
   total_pages: number;
 }
 
-export interface MovieDetailsResponse extends Movie {
+export interface MovieDetails extends MovieBase {
   genres: Genre[];
   imdb_id: string;
   tagline: string;
