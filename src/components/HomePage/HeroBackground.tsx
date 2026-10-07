@@ -16,12 +16,12 @@ export function HomeBackground({ src }: { src: string }) {
         )}
       />
 
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-to-t from-35% to-transparent to-70%"></div>
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-30 from-35% to-transparent to-50%"></div>
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-60 from-25% to-transparent to-50%"></div>
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-90 from-22% to-transparent to-40%"></div>
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-110 from-20% to-transparent to-40%"></div>
-      <div className="from-background absolute top-0 -z-10 h-dvh w-full bg-linear-170 from-10% to-transparent to-25%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-to-t from-35% to-transparent to-70%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-30 from-35% to-transparent to-50%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-60 from-25% to-transparent to-50%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-90 from-22% to-transparent to-40%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-110 from-20% to-transparent to-40%"></div>
+      <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-170 from-10% to-transparent to-25%"></div>
     </>
   );
 }
