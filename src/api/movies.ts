@@ -18,9 +18,9 @@ export async function fetchMovies(
   page: number,
 ): Promise<MoviesResponse> {
   let urlEnding = "";
-  if (sorting === "trending") urlEnding = "&sort_by=popularity.desc";
-  if (sorting === "most voted") urlEnding = "&sort_by=vote_count.desc";
-  if (sorting === "highest rated")
+  if (sorting === "Trending") urlEnding = "&sort_by=popularity.desc";
+  if (sorting === "Most voted") urlEnding = "&sort_by=vote_count.desc";
+  if (sorting === "Highest rated")
     urlEnding = "&sort_by=vote_average.desc&vote_count.gte=10000";
 
   const response = await fetch(
