@@ -3,7 +3,7 @@ import { HeaderNavLink } from "./HeaderNavLink";
 
 export function Header() {
   return (
-    <header className="flex gap-25 py-7">
+    <header className="flex gap-25 pt-7 pb-4">
       <div>
         <Link to="/">
           <span className="text-foreground text-3xl font-medium tracking-[0.2em]">

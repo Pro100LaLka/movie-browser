@@ -7,18 +7,14 @@ import {
 } from "../api/movies";
 import { useEffect, useState } from "react";
 import HeroMovie from "../components/HomePage/HeroMovie";
-import { MOVIE_SORT_OPTIONS, type MovieSort } from "../constants/movies";
+import { type MovieSort } from "../constants/movies";
+import HorizontalScroller from "../components/HorizontalScroller";
+import SortDropdown from "../components/HomePage/SortDropdown";
 
 const heroMovieNumber = 0;
 
 function HomePage() {
-  const genresQuery = useQuery({
-    queryKey: ["genres", "movies"],
-    queryFn: fetchMovieGenres,
-    staleTime: 1000 * 60 * 60 * 24 * 7,
-  });
-
-  const [sorting, setSorting] = useState<MovieSort>("trending");
+  const [sorting, setSorting] = useState<MovieSort>("Trending");
   const [page, setPage] = useState(1);
 
   const moviesQuery = useQuery({
@@ -41,6 +37,12 @@ function HomePage() {
 
   const heroMovieDet = heroMovieQuery.data;
 
+  const genresQuery = useQuery({
+    queryKey: ["genres", "movies"],
+    queryFn: fetchMovieGenres,
+    staleTime: 1000 * 60 * 60 * 24 * 7,
+  });
+
   useEffect(() => {
     console.log(genresQuery.data);
   }, [genresQuery.data]);
@@ -61,7 +63,7 @@ function HomePage() {
           src={heroMovieSum?.backdrop_path}
         />
       )}
-      <div className="flex h-120 max-w-full flex-col items-start justify-center">
+      <div className="flex h-100 max-w-full flex-col items-start justify-center">
         {heroMovieSum && (
           <HeroMovie heroMovieSum={heroMovieSum} heroMovieDet={heroMovieDet} />
         )}
@@ -76,23 +78,33 @@ function HomePage() {
           </h1>
         )}
       </div>
-      <select
-        name="sorting"
-        value={sorting}
-        onChange={(e) => setSorting(e.target.value as MovieSort)}
-      >
-        {MOVIE_SORT_OPTIONS.map((sortOption) => (
-          <option value={sortOption}>{sortOption}</option>
-        ))}
-      </select>
-      <ul className="text-foreground flex gap-2">
-        {genresQuery.isPending && <li>Loading genres...</li>}
-        {genresQuery.error && <li>Error while loading genres</li>}
-        {genresQuery.data &&
-          genresQuery.data?.genres.map((genre) => (
-            <li key={genre.id}>{genre.name}</li>
-          ))}
-      </ul>
+      <div className="flex justify-between">
+        <h2 className="text-foreground text-4xl font-medium">
+          What's trending right now
+        </h2>
+        <div className="flex items-center gap-2">
+          <label htmlFor="sorting" className="text-muted">
+            Sort by
+          </label>
+          <SortDropdown sorting={sorting} setSorting={setSorting} />
+        </div>
+      </div>
+      <div className="mt-4">
+        <HorizontalScroller>
+          <ul className="text-foreground flex gap-2">
+            {genresQuery.isPending && <li>Loading genres...</li>}
+            {genresQuery.error && <li>Error while loading genres</li>}
+            {genresQuery.data &&
+              genresQuery.data?.genres.map((genre) => (
+                <li key={genre.id}>
+                  <button className="text-foreground bg-surface border-border hover:bg-surface-hover active:bg-surface-active snap-start rounded-full border px-5 py-1.5 whitespace-nowrap">
+                    {genre.name}
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </HorizontalScroller>
+      </div>
     </>
   );
 }

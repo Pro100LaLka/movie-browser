@@ -19,7 +19,7 @@ function HeroMovie({ heroMovieSum, heroMovieDet }: HeroMovieProps) {
       {/* <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
               {heroMovieSum.title}
             </h1> */}
-      <h1 className="text-foreground font-barlow tracking origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
+      <h1 className="text-foreground font-barlow line-clamp-2 origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
         {heroMovieSum.title}
       </h1>
       <div className="text-foreground mt-2 flex gap-5">
@@ -45,11 +45,11 @@ function HeroMovie({ heroMovieSum, heroMovieDet }: HeroMovieProps) {
         {heroMovieSum.overview}
       </p>
       <div className="mt-4 flex gap-6">
-        <button className="text-on-primary hover:bg-primary-hover bg-primary active:bg-primary-active flex items-center gap-4 rounded-lg px-7 py-3 font-semibold">
+        <button className="text-on-primary hover:bg-primary-hover bg-primary active:bg-primary-active flex items-center gap-4 rounded-lg border border-transparent px-7 py-2.5 font-semibold">
           <InfoIcon />
           View details
         </button>
-        <button className="text-foreground hover:bg-surface ring-border hover:ring-border-hover active:bg-surface-hover active:ring-border-active flex items-center gap-4 rounded-lg px-7 py-3 font-semibold ring-2 ring-inset">
+        <button className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active flex items-center gap-4 rounded-lg border-2 px-7 py-2.5 font-semibold">
           <BookmarkIcon />
           Add to watchlist
         </button>
