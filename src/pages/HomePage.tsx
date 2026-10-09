@@ -10,6 +10,8 @@ import HeroMovie from "../components/HomePage/HeroMovie";
 import { type MovieSort } from "../constants/movies";
 import HorizontalScroller from "../components/HorizontalScroller";
 import SortDropdown from "../components/HomePage/SortDropdown";
+import { GenreList } from "../components/HomePage/GenreList";
+import MovieList from "../components/HomePage/MovieList";
 
 const heroMovieNumber = 0;
 
@@ -64,23 +66,18 @@ function HomePage() {
         />
       )}
       <div className="flex h-100 max-w-full flex-col items-start justify-center">
-        {heroMovieSum && (
-          <HeroMovie heroMovieSum={heroMovieSum} heroMovieDet={heroMovieDet} />
-        )}
-        {moviesQuery.error && (
-          <h1 className="text-foreground flex h-full items-center justify-center text-7xl">
-            Error occured while fetching the movies
-          </h1>
-        )}
-        {moviesQuery.isLoading && (
-          <h1 className="text-foreground flex h-full items-center justify-center text-7xl">
-            Loading...
-          </h1>
-        )}
+        <HeroMovie
+          heroMovieSum={heroMovieSum}
+          heroMovieDet={heroMovieDet}
+          error={moviesQuery.error}
+          isPending={moviesQuery.isPending}
+        />
       </div>
       <div className="flex justify-between">
         <h2 className="text-foreground text-4xl font-medium">
-          What's trending right now
+          {sorting === "Trending" && "What's trending right now"}
+          {sorting === "Most voted" && "Movies everyone knows"}
+          {sorting === "Highest rated" && "The highest-rated picks"}
         </h2>
         <div className="flex items-center gap-2">
           <label htmlFor="sorting" className="text-muted">
@@ -91,19 +88,19 @@ function HomePage() {
       </div>
       <div className="mt-4">
         <HorizontalScroller>
-          <ul className="text-foreground flex gap-2">
-            {genresQuery.isPending && <li>Loading genres...</li>}
-            {genresQuery.error && <li>Error while loading genres</li>}
-            {genresQuery.data &&
-              genresQuery.data?.genres.map((genre) => (
-                <li key={genre.id}>
-                  <button className="text-foreground bg-surface border-border hover:bg-surface-hover active:bg-surface-active snap-start rounded-full border px-5 py-1.5 whitespace-nowrap">
-                    {genre.name}
-                  </button>
-                </li>
-              ))}
-          </ul>
+          <GenreList
+            genres={genresQuery.data?.genres}
+            isPending={genresQuery.isPending}
+            error={genresQuery.error}
+          />
         </HorizontalScroller>
+      </div>
+      <div className="mt-4 pb-30">
+        <MovieList
+          movies={moviesQuery.data?.results}
+          isPending={moviesQuery.isPending}
+          error={moviesQuery.error}
+        />
       </div>
     </>
   );
