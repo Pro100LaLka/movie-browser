@@ -1,7 +1,7 @@
 import type { Genre } from "../../types/movies";
 
 interface GenreListProps {
-  genres: Genre[];
+  genres: Genre[] | undefined;
   isPending: boolean;
   error: Error | null;
 }

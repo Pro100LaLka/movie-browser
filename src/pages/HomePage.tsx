@@ -65,7 +65,7 @@ function HomePage() {
           src={heroMovieSum?.backdrop_path}
         />
       )}
-      <div className="flex h-100 max-w-full flex-col items-start justify-center">
+      <div className="flex min-h-100 max-w-full flex-col items-start justify-center">
         <HeroMovie
           heroMovieSum={heroMovieSum}
           heroMovieDet={heroMovieDet}
