@@ -86,7 +86,7 @@ function HomePage() {
           <SortDropdown sorting={sorting} setSorting={setSorting} />
         </div>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex min-h-12 items-center">
         <HorizontalScroller>
           <GenreList
             genres={genresQuery.data?.genres}
