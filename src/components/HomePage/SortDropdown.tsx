@@ -46,7 +46,7 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
         id="sorting"
         onClick={() => setIsOpen((prev) => !prev)}
         // onChange={(e) => setSorting(e.target.value as MovieSort)}
-        className="text-foreground border-border focus:outline-primary-hover bg-background/80 flex w-40 items-center justify-between rounded-lg border px-4 py-1.5 text-start focus:outline-2"
+        className="text-foreground border-muted focus:outline-primary-hover bg-background/80 flex w-40 items-center justify-between rounded-lg border px-4 py-1.5 text-start focus:outline-2"
       >
         {sorting}
         {isOpen ? <ArrowIcon direction="down" /> : <ArrowIcon direction="up" />}

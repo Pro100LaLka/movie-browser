@@ -5,26 +5,29 @@ import type {
   MoviesResponse,
 } from "../types/movies";
 
+const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+
 export async function fetchMovieGenres(): Promise<GenreResponse> {
   const response = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=de8fff199ac1c1dfcf6c179183c67c67&language=en",
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
   );
   if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
   return await response.json();
 }
 
 export async function fetchMovies(
+  genre: number,
   sorting: MovieSort,
   page: number,
 ): Promise<MoviesResponse> {
-  let urlEnding = "";
-  if (sorting === "Trending") urlEnding = "&sort_by=popularity.desc";
-  if (sorting === "Most voted") urlEnding = "&sort_by=vote_count.desc";
+  let urlSorting = "";
+  if (sorting === "Trending") urlSorting = "&sort_by=popularity.desc";
+  if (sorting === "Most voted") urlSorting = "&sort_by=vote_count.desc";
   if (sorting === "Highest rated")
-    urlEnding = "&sort_by=vote_average.desc&vote_count.gte=10000";
+    urlSorting = "&sort_by=vote_average.desc&vote_count.gte=10000";
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=de8fff199ac1c1dfcf6c179183c67c67&include_adult=false&include_video=false&language=en-US&page=${page}${urlEnding}`,
+    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}${urlSorting}&with_genres=${genre || ""}`,
   );
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
   return await response.json();
@@ -32,7 +35,7 @@ export async function fetchMovies(
 
 export async function fetchMovieDetails(id: number): Promise<MovieDetails> {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=de8fff199ac1c1dfcf6c179183c67c67`,
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`,
   );
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
   return await response.json();

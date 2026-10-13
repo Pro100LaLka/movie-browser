@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { HomeBackground } from "../components/HomePage/HeroBackground";
 import {
   fetchMovieDetails,
@@ -7,24 +7,33 @@ import {
 } from "../api/movies";
 import { useEffect, useState } from "react";
 import HeroMovie from "../components/HomePage/HeroMovie";
-import { type MovieSort } from "../constants/movies";
-import HorizontalScroller from "../components/HorizontalScroller";
+import { unselectedGenre, type MovieSort } from "../constants/movies";
 import SortDropdown from "../components/HomePage/SortDropdown";
 import { GenreList } from "../components/HomePage/GenreList";
 import MovieList from "../components/HomePage/MovieList";
+import type { Genre } from "../types/movies";
+import SelectedGenre from "../components/HomePage/SelectedGenre";
+import LoadMore from "../components/HomePage/LoadMore";
 
 const heroMovieNumber = 0;
 
 function HomePage() {
+  const [selectedGenre, setSelectedGenre] = useState<Genre>(unselectedGenre);
   const [sorting, setSorting] = useState<MovieSort>("Trending");
-  const [page, setPage] = useState(1);
 
-  const moviesQuery = useQuery({
-    queryKey: ["movies", sorting, page],
-    queryFn: () => fetchMovies(sorting, page),
+  const moviesQuery = useInfiniteQuery({
+    queryKey: ["movies", selectedGenre.id, sorting],
+    queryFn: ({ pageParam }) =>
+      fetchMovies(selectedGenre.id, sorting, pageParam),
+
+    initialPageParam: 1,
+
+    getNextPageParam: (lastPage) => lastPage.page + 1,
   });
 
-  const heroMovieSum = moviesQuery.data?.results[heroMovieNumber];
+  const movies = moviesQuery.data?.pages.flatMap((page) => page.results);
+
+  const heroMovieSum = moviesQuery.data?.pages[0]?.results[heroMovieNumber];
 
   const heroMovieQuery = useQuery({
     queryKey: ["movie", heroMovieSum?.id],
@@ -87,21 +96,32 @@ function HomePage() {
         </div>
       </div>
       <div className="mt-4 flex min-h-12 items-center">
-        <HorizontalScroller>
-          <GenreList
-            genres={genresQuery.data?.genres}
-            isPending={genresQuery.isPending}
-            error={genresQuery.error}
-          />
-        </HorizontalScroller>
+        <GenreList
+          genres={genresQuery.data?.genres}
+          isPending={genresQuery.isPending}
+          error={genresQuery.error}
+          selectedGenre={selectedGenre}
+          onGenreChange={setSelectedGenre}
+        />
       </div>
-      <div className="mt-4 pb-30">
+      <SelectedGenre
+        selectedGenre={selectedGenre}
+        onGenreChange={setSelectedGenre}
+      />
+      <div className="mt-5">
         <MovieList
-          movies={moviesQuery.data?.results}
+          movies={movies}
           isPending={moviesQuery.isPending}
           error={moviesQuery.error}
         />
       </div>
+      <div className="flex h-30 items-center justify-center">
+        <LoadMore
+          isFetchingNextPage={moviesQuery.isFetchingNextPage}
+          fetchNextPage={moviesQuery.fetchNextPage}
+        />
+      </div>
+      <div className="h-30"></div>
     </>
   );
 }
