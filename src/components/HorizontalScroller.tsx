@@ -8,7 +8,7 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
   const [canScrollRight, setCanScrollRight] = useState(false);
 
   function handleScroll(element: HTMLDivElement) {
-    setCanScrollLeft(element.scrollLeft > 1);
+    setCanScrollLeft(element.scrollLeft > 10);
     setCanScrollRight(
       element.scrollLeft + element.clientWidth < element.scrollWidth - 1,
     );
@@ -50,7 +50,7 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
         ref={scrollRef}
         onScroll={(e) => handleScroll(e.currentTarget)}
         className={clsx(
-          "col-start-1 row-start-1 snap-x snap-mandatory scrollbar-none overflow-x-auto scroll-smooth motion-reduce:scroll-auto",
+          "col-start-1 row-start-1 -ml-2 snap-x snap-mandatory scroll-px-2 scrollbar-none self-stretch overflow-x-auto scroll-smooth motion-reduce:scroll-auto",
           canScrollRight
             ? canScrollLeft
               ? "mask-[linear-gradient(to_right,transparent_calc(0%+3rem),black_calc(0%+8rem),black_calc(100%-8rem),transparent_calc(100%-3rem))]"
@@ -63,18 +63,20 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
         {children}
       </div>
       <button
+        tabIndex={-1}
         onClick={() => scroll(-1)}
         className={clsx(
-          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 items-center justify-center rounded-full border text-2xl",
+          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-full border text-2xl",
           canScrollLeft || "hidden",
         )}
       >
         <ArrowIcon direction="left" />
       </button>
       <button
+        tabIndex={-1}
         onClick={() => scroll(1)}
         className={clsx(
-          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 items-center justify-center justify-self-end rounded-full border text-2xl",
+          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 cursor-pointer items-center justify-center justify-self-end rounded-full border text-2xl",
           canScrollRight || "hidden",
         )}
       >

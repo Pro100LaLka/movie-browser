@@ -54,15 +54,15 @@ function HeroMovie({
             {heroMovieSum.overview}
           </p>
           <div className="mt-4 flex gap-6">
-            <button className="text-on-primary hover:bg-primary-hover bg-primary active:bg-primary-active flex items-center gap-4 rounded-lg border border-transparent px-7 py-2.5 font-semibold">
+            <button className="text-on-primary hover:bg-primary-hover bg-primary active:bg-primary-active outline-primary flex cursor-pointer items-center gap-4 rounded-lg border border-transparent px-7 py-2.5 font-semibold outline-offset-3 focus-visible:outline-2">
               <InfoIcon />
               View details
             </button>
-            <button className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active flex items-center gap-4 rounded-lg border-2 px-7 py-2.5 font-semibold">
+            <button className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active outline-primary flex cursor-pointer items-center gap-4 rounded-lg border-2 px-7 py-2.5 font-semibold outline-offset-3 focus-visible:outline-2">
               <BookmarkIcon />
               Add to watchlist
             </button>
-            <button className="text-foreground hover:text-primary-hover active:text-primary-active flex items-center gap-4 self-stretch px-2 font-semibold">
+            <button className="text-foreground hover:text-primary-hover active:text-primary-active outline-primary flex cursor-pointer items-center gap-4 self-stretch rounded-lg px-2 font-semibold outline-offset-3 focus-visible:outline-2">
               <PlayIcon />
               Watch trailer
             </button>

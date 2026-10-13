@@ -46,7 +46,7 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
         id="sorting"
         onClick={() => setIsOpen((prev) => !prev)}
         // onChange={(e) => setSorting(e.target.value as MovieSort)}
-        className="text-foreground border-muted focus:outline-primary-hover bg-background/80 flex w-40 items-center justify-between rounded-lg border px-4 py-1.5 text-start focus:outline-2"
+        className="text-foreground border-muted bg-background/80 focus:border-primary focus:ring-primary hover:bg-surface/80 flex w-40 cursor-pointer items-center justify-between rounded-lg border px-4 py-1.5 text-start focus:ring-2 focus-visible:outline-none"
       >
         {sorting}
         {isOpen ? <ArrowIcon direction="down" /> : <ArrowIcon direction="up" />}
@@ -58,9 +58,9 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
               <button
                 onClick={() => handleOptionClick(sortOption)}
                 className={clsx(
-                  "text-foreground flex w-full items-center gap-2 px-3 py-2 text-start",
+                  "text-foreground focus-visible:outline-primary flex w-full items-center gap-2 rounded-md px-3 py-2 text-start focus-visible:outline-2",
                   sorting === sortOption ||
-                    "hover:bg-surface-hover active:bg-surface-active",
+                    "hover:bg-surface-hover active:bg-surface-active cursor-pointer",
                   sorting === sortOption && "text-primary",
                 )}
               >

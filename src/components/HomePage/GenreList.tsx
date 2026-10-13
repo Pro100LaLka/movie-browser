@@ -20,23 +20,31 @@ export function GenreList({
 }: GenreListProps) {
   return (
     <HorizontalScroller>
-      <ul className="flex gap-2">
+      <ul className="flex h-full w-max items-center gap-2 px-2">
         {isPending && <li>Loading genres...</li>}
         {error && <li>Error while loading genres</li>}
         {genres &&
           [unselectedGenre, ...genres].map((genre) => (
-            <li key={genre.id}>
-              <button
-                onClick={() => onGenreChange(genre)}
+            <li key={genre.id} className="relative flex">
+              <input
+                type="radio"
+                className="peer sr-only"
+                id={String(genre.id)}
+                name="genre"
+                onChange={() => onGenreChange(genre)}
+                checked={genre.id === selectedGenre.id}
+              />
+              <label
+                htmlFor={String(genre.id)}
                 className={clsx(
-                  "snap-start rounded-full border px-5 py-1.5 whitespace-nowrap",
+                  "outline-primary snap-start rounded-full border px-5 py-1.5 whitespace-nowrap outline-offset-3 peer-focus-visible:outline-2",
                   genre.id === selectedGenre.id
                     ? "text-on-primary bg-primary border-transparent font-medium"
-                    : "text-foreground bg-surface border-border hover:bg-surface-hover active:bg-surface-active",
+                    : "text-foreground bg-surface border-border hover:bg-surface-hover active:bg-surface-active cursor-pointer",
                 )}
               >
                 {genre.name}
-              </button>
+              </label>
             </li>
           ))}
       </ul>
