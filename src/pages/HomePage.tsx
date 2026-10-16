@@ -1,10 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { HomeBackground } from "../components/HomePage/HeroBackground";
-import {
-  fetchMovieDetails,
-  fetchMovieGenres,
-  fetchMovies,
-} from "../api/movies";
+import { fetchMovieGenres, fetchMovies } from "../api/movies";
 import { useState } from "react";
 import HeroMovie from "../components/HomePage/HeroMovie";
 import { unselectedGenre, type MovieSort } from "../constants/movies";
@@ -14,6 +10,7 @@ import MovieList from "../components/HomePage/MovieList";
 import type { Genre } from "../types/movies";
 import SelectedGenre from "../components/HomePage/SelectedGenre";
 import LoadMore from "../components/HomePage/LoadMore";
+import useMovieDetailsQuery from "../hooks/useMovieDetailsQuery";
 
 const heroMovieNumber = 0;
 
@@ -35,16 +32,7 @@ function HomePage() {
 
   const heroMovieSum = moviesQuery.data?.pages[0]?.results[heroMovieNumber];
 
-  const heroMovieQuery = useQuery({
-    queryKey: ["movie", heroMovieSum?.id],
-    queryFn: () => {
-      if (heroMovieSum?.id === undefined)
-        throw new Error("Missing hero movie ID");
-
-      return fetchMovieDetails(heroMovieSum.id);
-    },
-    enabled: heroMovieSum?.id !== undefined,
-  });
+  const heroMovieQuery = useMovieDetailsQuery(heroMovieSum?.id);
 
   const heroMovieDet = heroMovieQuery.data;
 
