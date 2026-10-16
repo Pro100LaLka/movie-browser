@@ -5,7 +5,7 @@ import {
   fetchMovieGenres,
   fetchMovies,
 } from "../api/movies";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeroMovie from "../components/HomePage/HeroMovie";
 import { unselectedGenre, type MovieSort } from "../constants/movies";
 import SortDropdown from "../components/HomePage/SortDropdown";
@@ -22,7 +22,7 @@ function HomePage() {
   const [sorting, setSorting] = useState<MovieSort>("Trending");
 
   const moviesQuery = useInfiniteQuery({
-    queryKey: ["movies", selectedGenre.id, sorting],
+    queryKey: ["movies", "infinite", selectedGenre.id, sorting],
     queryFn: ({ pageParam }) =>
       fetchMovies(selectedGenre.id, sorting, pageParam),
 
@@ -53,18 +53,6 @@ function HomePage() {
     queryFn: fetchMovieGenres,
     staleTime: 1000 * 60 * 60 * 24 * 7,
   });
-
-  useEffect(() => {
-    console.log(genresQuery.data);
-  }, [genresQuery.data]);
-
-  useEffect(() => {
-    console.log(moviesQuery.data);
-  }, [moviesQuery.data]);
-
-  useEffect(() => {
-    console.log(heroMovieQuery.data);
-  }, [heroMovieQuery.data]);
 
   return (
     <>
