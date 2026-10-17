@@ -63,7 +63,9 @@ function HeroMovie({
               Add to watchlist
             </button>
             <button className="text-foreground hover:text-primary-hover active:text-primary-active outline-primary flex cursor-pointer items-center gap-4 self-stretch rounded-lg px-2 font-semibold outline-offset-3 focus-visible:outline-2">
-              <PlayIcon />
+              <div className="flex size-10 items-center justify-center rounded-full ring-2 ring-inherit ring-inset">
+                <PlayIcon />
+              </div>
               Watch trailer
             </button>
           </div>

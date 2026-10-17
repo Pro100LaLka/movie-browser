@@ -44,12 +44,10 @@ function HomePage() {
 
   return (
     <>
-      {heroMovieSum?.backdrop_path && (
-        <HomeBackground
-          key={heroMovieSum?.backdrop_path}
-          src={heroMovieSum?.backdrop_path}
-        />
-      )}
+      <HomeBackground
+        key={heroMovieSum?.backdrop_path}
+        backdropPath={heroMovieSum?.backdrop_path}
+      />
       <div className="flex min-h-100 max-w-full flex-col items-start justify-center">
         <HeroMovie
           heroMovieSum={heroMovieSum}

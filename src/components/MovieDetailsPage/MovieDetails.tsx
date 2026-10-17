@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import useMovieDetailsQuery from "../../hooks/useMovieDetailsQuery";
 import CastList from "./CastList";
+import { MovieBackground } from "./MovieBackground";
+import Breadcrumbs from "./Breadcrumbs";
+import Poster from "./Poster";
+import RatingCard from "./RatingCard";
+import PrimaryActions from "./PrimaryActions";
 
 function MovieDetails({ id }: { id: number }) {
   const movieDetailsQuery = useMovieDetailsQuery(id);
@@ -28,7 +33,33 @@ function MovieDetails({ id }: { id: number }) {
         </button>
       </div>
     );
-  return <CastList id={id} />;
+
+  const movieDetails = movieDetailsQuery.data;
+
+  return (
+    <>
+      <MovieBackground
+        backdropPath={movieDetails.backdrop_path}
+        key={movieDetails.backdrop_path}
+      />
+      <div className="mt-5">
+        <Breadcrumbs title={movieDetails.title} />
+      </div>
+
+      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr]">
+        <div className="col-span-1 col-start-1 flex flex-col gap-5">
+          <Poster poster_path={movieDetails.poster_path} />
+          <RatingCard
+            voteAverage={movieDetails.vote_average}
+            voteCount={movieDetails.vote_count}
+          />
+          <PrimaryActions imdbId={movieDetails.imdb_id} />
+        </div>
+      </div>
+      {/* <CastList id={id} /> */}
+      <div className="h-300"></div>
+    </>
+  );
 }
 
 export default MovieDetails;
