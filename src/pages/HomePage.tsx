@@ -69,7 +69,7 @@ function HomePage() {
           <SortDropdown sorting={sorting} setSorting={setSorting} />
         </div>
       </div>
-      <div className="mt-4 flex min-h-12 items-center pb-2">
+      <div className="mt-4 flex min-h-14 items-center pb-2">
         <GenreList
           genres={genresQuery.data?.genres}
           isPending={genresQuery.isPending}

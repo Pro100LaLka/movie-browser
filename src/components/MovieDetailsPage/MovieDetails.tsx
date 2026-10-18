@@ -69,17 +69,19 @@ function MovieDetails({ id }: { id: number }) {
           />
           <PrimaryActions imdbId={movieDetails.imdb_id} />
         </div>
-        <div className="col-span-1 col-start-2">
+        <div className="col-span-1 col-start-2 flex flex-col justify-center">
           <MovieHeading movieDetails={movieDetails} />
           <div className="mt-8">
             <MovieFacts credits={credits} movieDetails={movieDetails} />
           </div>
-          <div className="mt-6">
-            <CollectionCard collection={movieDetails.belongs_to_collection} />
-          </div>
+          {movieDetails.belongs_to_collection && (
+            <div className="mt-6">
+              <CollectionCard collection={movieDetails.belongs_to_collection} />
+            </div>
+          )}
         </div>
       </div>
-      <CastList cast={creditsQuery.data?.cast} />
+      {/* <CastList cast={creditsQuery.data?.cast} /> */}
       <div className="h-300"></div>
     </>
   );

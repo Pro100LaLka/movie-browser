@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { MovieSummary } from "../../types/movies";
 import { formatRating } from "../../utils/format";
 import StarIcon from "../icons/StarIcon";
@@ -8,7 +9,10 @@ interface MovieCardProps {
 
 function MovieCard({ movie }: MovieCardProps) {
   return (
-    <div className="group cursor-pointer transition-transform duration-300 hover:-translate-y-px">
+    <Link
+      to={`./movies/${movie.id}`}
+      className="group cursor-pointer transition-transform duration-300 hover:-translate-y-px"
+    >
       <div className="group-hover:outline-primary aspect-2/3 overflow-hidden rounded-lg outline-2 outline-transparent transition-colors duration-300">
         <img
           className="pointer-events-none transition-transform duration-300 group-hover:scale-105"
@@ -33,7 +37,7 @@ function MovieCard({ movie }: MovieCardProps) {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
