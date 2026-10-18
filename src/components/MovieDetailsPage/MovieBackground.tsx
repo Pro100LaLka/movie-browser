@@ -17,7 +17,7 @@ export function MovieBackground({ backdropPath }: { backdropPath: string }) {
       />
 
       <div className="from-background absolute top-0 left-0 -z-10 h-dvh w-full bg-linear-to-t from-45% to-transparent to-55%"></div>
-      <div className="bg-background/60 absolute top-0 left-0 -z-5 h-dvh w-full backdrop-blur-lg"></div>
+      <div className="bg-background/75 absolute top-0 left-0 -z-5 h-dvh w-full backdrop-blur-lg"></div>
     </>
   );
 }

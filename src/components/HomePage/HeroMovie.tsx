@@ -25,12 +25,12 @@ function HeroMovie({
           <p className="text-muted h-5 text-sm tracking-wider uppercase">
             {heroMovieDet?.tagline}
           </p>
-          {/* <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
-              {heroMovieSum.title}
-            </h1> */}
-          <h1 className="text-foreground font-barlow line-clamp-2 origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
+          <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
             {heroMovieSum.title}
           </h1>
+          {/* <h1 className="text-foreground font-barlow line-clamp-2 origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
+            {heroMovieSum.title}
+          </h1> */}
           <div className="text-foreground mt-2 flex gap-5">
             <p className="">{heroMovieSum.release_date.slice(0, 4)}</p>
             <span className="font-serif">|</span>

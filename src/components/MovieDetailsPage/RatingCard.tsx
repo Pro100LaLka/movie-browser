@@ -15,11 +15,11 @@ function RatingCard({ voteAverage, voteCount }: RatingCardProps) {
         ) : (
           <p className="flex items-center gap-3 text-xl">
             <StarIcon />
-            <span className="flex items-center gap-1.5">
-              <span className="text-foreground text-[1.625rem] font-medium">
+            <span className="flex items-center gap-1">
+              <span className="text-foreground text-[1.625rem] font-medium tracking-wide">
                 {formatRating(voteAverage)}
               </span>
-              <span className="text-muted mt-1 text-base">/ 10</span>
+              <span className="text-muted mt-1.5 text-base">/ 10</span>
             </span>
           </p>
         )}

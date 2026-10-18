@@ -6,9 +6,23 @@ import Breadcrumbs from "./Breadcrumbs";
 import Poster from "./Poster";
 import RatingCard from "./RatingCard";
 import PrimaryActions from "./PrimaryActions";
+import MovieHeading from "./MovieHeading";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCredits } from "../../api/movies";
+import { selectKeyCredits } from "../../utils/select";
+import MovieFacts from "./MovieFacts";
+import CollectionCard from "./CollectionCard";
 
 function MovieDetails({ id }: { id: number }) {
   const movieDetailsQuery = useMovieDetailsQuery(id);
+
+  const creditsQuery = useQuery({
+    queryKey: ["credits", id],
+    queryFn: () => fetchCredits(id),
+    select: selectKeyCredits,
+  });
+
+  const credits = creditsQuery.data;
 
   useEffect(() => {
     console.log(movieDetailsQuery.data);
@@ -46,7 +60,7 @@ function MovieDetails({ id }: { id: number }) {
         <Breadcrumbs title={movieDetails.title} />
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr]">
+      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr] gap-x-15">
         <div className="col-span-1 col-start-1 flex flex-col gap-5">
           <Poster poster_path={movieDetails.poster_path} />
           <RatingCard
@@ -55,8 +69,17 @@ function MovieDetails({ id }: { id: number }) {
           />
           <PrimaryActions imdbId={movieDetails.imdb_id} />
         </div>
+        <div className="col-span-1 col-start-2">
+          <MovieHeading movieDetails={movieDetails} />
+          <div className="mt-8">
+            <MovieFacts credits={credits} movieDetails={movieDetails} />
+          </div>
+          <div className="mt-6">
+            <CollectionCard collection={movieDetails.belongs_to_collection} />
+          </div>
+        </div>
       </div>
-      {/* <CastList id={id} /> */}
+      <CastList cast={creditsQuery.data?.cast} />
       <div className="h-300"></div>
     </>
   );

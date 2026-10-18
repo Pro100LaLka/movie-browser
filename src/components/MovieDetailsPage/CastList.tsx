@@ -1,18 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchCredits } from "../../api/movies";
-import { selectKeyCredits } from "../../utils/select";
 import { useEffect } from "react";
+import type { Cast } from "../../types/movies";
 
-function CastList({ id }: { id: number }) {
-  const creditsQuery = useQuery({
-    queryKey: ["credits", id],
-    queryFn: () => fetchCredits(id),
-    select: selectKeyCredits,
-  });
-
+function CastList({ cast }: { cast: Cast[] | undefined }) {
   useEffect(() => {
-    console.log(creditsQuery.data);
-  }, [creditsQuery.data]);
+    console.log(cast);
+  }, [cast]);
 
   return <h3>Cast</h3>;
 }
