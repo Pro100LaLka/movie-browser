@@ -60,26 +60,28 @@ function MovieDetails({ id }: { id: number }) {
         <Breadcrumbs title={movieDetails.title} />
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr] gap-x-15">
+      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr] gap-x-15 gap-y-10">
         <div className="col-span-1 col-start-1 flex flex-col gap-5">
           <Poster poster_path={movieDetails.poster_path} />
           <RatingCard
             voteAverage={movieDetails.vote_average}
             voteCount={movieDetails.vote_count}
           />
-          <PrimaryActions imdbId={movieDetails.imdb_id} />
         </div>
         <div className="col-span-1 col-start-2 flex flex-col justify-center">
           <MovieHeading movieDetails={movieDetails} />
+          <div className="mt-6">
+            <PrimaryActions imdbId={movieDetails.imdb_id} />
+          </div>
           <div className="mt-8">
             <MovieFacts credits={credits} movieDetails={movieDetails} />
           </div>
-          {movieDetails.belongs_to_collection && (
-            <div className="mt-6">
-              <CollectionCard collection={movieDetails.belongs_to_collection} />
-            </div>
-          )}
         </div>
+        {movieDetails.belongs_to_collection && (
+          <div className="col-span-2 col-start-1">
+            <CollectionCard collection={movieDetails.belongs_to_collection} />
+          </div>
+        )}
       </div>
       {/* <CastList cast={creditsQuery.data?.cast} /> */}
       <div className="h-300"></div>

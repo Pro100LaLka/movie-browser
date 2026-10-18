@@ -16,8 +16,8 @@ function CollectionCard({ collection }: CollectionCardProps) {
       <div className="from-surface absolute h-full w-full bg-linear-to-r from-35% to-transparent to-100%"></div>
       <div className="from-surface to-surface/60 absolute h-full w-full bg-linear-to-r from-35% to-50%"></div>
 
-      <div className="relative z-1 flex items-center gap-6 p-6">
-        <div className="border-border aspect-2/3 w-25 overflow-hidden rounded-md border">
+      <div className="relative z-1 flex items-center gap-6 px-6 py-4">
+        <div className="border-border aspect-2/3 w-18 overflow-hidden rounded-md border">
           <img
             src={`https://image.tmdb.org/t/p/w185${collection.poster_path}`}
             alt=""
@@ -27,7 +27,7 @@ function CollectionCard({ collection }: CollectionCardProps) {
           <p className="text-muted text-sm tracking-wider uppercase">
             part of a collection
           </p>
-          <p className="text-foreground mt-2 text-2xl font-semibold">
+          <p className="text-foreground mt-1 text-2xl font-semibold">
             {collection.name}
           </p>
         </div>
