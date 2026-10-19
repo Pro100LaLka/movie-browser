@@ -51,3 +51,13 @@ export async function fetchCredits(movieId: number): Promise<CreditsResponse> {
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
   return await response.json();
 }
+
+export async function fetchSimilarMovies(
+  movieId: number,
+): Promise<MoviesResponse> {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${apiKey}`,
+  );
+  if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+  return await response.json();
+}

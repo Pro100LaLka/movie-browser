@@ -10,12 +10,12 @@ interface MovieCardProps {
 function MovieCard({ movie }: MovieCardProps) {
   return (
     <Link
-      to={`./movies/${movie.id}`}
+      to={`/movies/${movie.id}`}
       className="group cursor-pointer transition-transform duration-300 hover:-translate-y-px"
     >
       <div className="group-hover:outline-primary aspect-2/3 overflow-hidden rounded-lg outline-2 outline-transparent transition-colors duration-300">
         <img
-          className="pointer-events-none transition-transform duration-300 group-hover:scale-105"
+          className="pointer-events-none size-full object-cover transition-transform duration-300 group-hover:scale-105"
           src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
           alt={movie.title}
         />

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useMovieDetailsQuery from "../../hooks/useMovieDetailsQuery";
 import CastList from "./CastList";
 import { MovieBackground } from "./MovieBackground";
@@ -8,10 +7,11 @@ import RatingCard from "./RatingCard";
 import PrimaryActions from "./PrimaryActions";
 import MovieHeading from "./MovieHeading";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCredits } from "../../api/movies";
+import { fetchCredits, fetchSimilarMovies } from "../../api/movies";
 import { selectKeyCredits } from "../../utils/select";
 import MovieFacts from "./MovieFacts";
 import CollectionCard from "./CollectionCard";
+import SimilarList from "./SimilarList";
 
 function MovieDetails({ id }: { id: number }) {
   const movieDetailsQuery = useMovieDetailsQuery(id);
@@ -22,11 +22,12 @@ function MovieDetails({ id }: { id: number }) {
     select: selectKeyCredits,
   });
 
-  const credits = creditsQuery.data;
+  const similarQuery = useQuery({
+    queryKey: ["movies", "similar", id],
+    queryFn: () => fetchSimilarMovies(id),
+  });
 
-  useEffect(() => {
-    console.log(movieDetailsQuery.data);
-  }, [movieDetailsQuery.data]);
+  const credits = creditsQuery.data;
 
   if (movieDetailsQuery.isPending)
     return (
@@ -60,7 +61,7 @@ function MovieDetails({ id }: { id: number }) {
         <Breadcrumbs title={movieDetails.title} />
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr] gap-x-15 gap-y-10">
+      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-[350px_1fr] gap-x-15">
         <div className="col-span-1 col-start-1 flex flex-col gap-5">
           <Poster poster_path={movieDetails.poster_path} />
           <RatingCard
@@ -78,15 +79,18 @@ function MovieDetails({ id }: { id: number }) {
           </div>
         </div>
 
-        <div className="col-span-2 col-start-1">
-          <CollectionCard collection={movieDetails.belongs_to_collection} />
-        </div>
-        <div className="col-span-2 col-start-1">
+        {movieDetails.belongs_to_collection && (
+          <div className="col-span-2 col-start-1 mt-10">
+            <CollectionCard collection={movieDetails.belongs_to_collection} />
+          </div>
+        )}
+        <div className="col-span-2 col-start-1 mt-20">
           <CastList cast={creditsQuery.data?.cast} />
         </div>
-        <div className="col-span-2 col-start-1"></div>
+        <div className="col-span-2 col-start-1 mt-20">
+          <SimilarList movies={similarQuery.data?.results} />
+        </div>
       </div>
-
       <div className="h-300"></div>
     </>
   );

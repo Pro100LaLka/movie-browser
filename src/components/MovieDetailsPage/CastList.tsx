@@ -1,21 +1,16 @@
-import { useEffect } from "react";
 import type { Cast } from "../../types/movies";
 import HorizontalScroller from "../HorizontalScroller";
 import UserIcon from "../icons/UserIcon";
 
 function CastList({ cast }: { cast: Cast[] | undefined }) {
-  useEffect(() => {
-    console.log(cast);
-  }, [cast]);
-
   return (
     cast && (
       <>
         <h2 className="text-foreground text-4xl font-medium">Cast</h2>
-        <HorizontalScroller>
+        <HorizontalScroller type="pill">
           <ul className="mt-6 flex gap-10 px-2">
             {cast.map((actor) => (
-              <li className="flex flex-col items-center">
+              <li className="flex flex-col items-center" key={actor.id}>
                 <div className="text-border-hover bg-surface-hover ring-border-hover flex aspect-square w-40 items-center justify-center overflow-hidden rounded-full ring ring-inset">
                   <UserIcon />
                   <img

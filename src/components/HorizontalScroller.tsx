@@ -2,7 +2,12 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import ArrowIcon from "./icons/ArrowIcon";
 import clsx from "clsx";
 
-function HorizontalScroller({ children }: { children: ReactNode }) {
+interface HorizontalScrollerProps {
+  children: ReactNode;
+  type: "pill" | "rect";
+}
+
+function HorizontalScroller({ children, type }: HorizontalScrollerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -19,7 +24,7 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
     if (!element) return;
 
     element.scrollBy({
-      left: direction * element.clientWidth * 0.5,
+      left: direction * element.clientWidth * 0.8,
       behavior: "auto",
     });
   }
@@ -66,8 +71,10 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
         tabIndex={-1}
         onClick={() => scroll(-1)}
         className={clsx(
-          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-full border text-2xl",
+          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex shrink-0 cursor-pointer items-center justify-center border text-2xl",
           canScrollLeft || "hidden",
+          type === "pill" && "size-12 rounded-full",
+          type === "rect" && "h-25 w-12 rounded-md",
         )}
       >
         <ArrowIcon direction="left" />
@@ -76,8 +83,10 @@ function HorizontalScroller({ children }: { children: ReactNode }) {
         tabIndex={-1}
         onClick={() => scroll(1)}
         className={clsx(
-          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex size-12 shrink-0 cursor-pointer items-center justify-center justify-self-end rounded-full border text-2xl",
+          "bg-surface-elevated hover:bg-surface-hover border-border text-foreground active:bg-surface-active z-1 col-start-1 row-start-1 flex shrink-0 cursor-pointer items-center justify-center justify-self-end border text-2xl",
           canScrollRight || "hidden",
+          type === "pill" && "size-12 rounded-full",
+          type === "rect" && "h-25 w-12 rounded-md",
         )}
       >
         <ArrowIcon direction="right" />
