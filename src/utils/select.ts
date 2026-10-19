@@ -10,7 +10,7 @@ export interface Credits {
 export function selectKeyCredits(data: CreditsResponse): Credits {
   const id = data.id;
 
-  const cast = [...data.cast].sort((a, b) => a.order - b.order).slice(0, 10);
+  const cast = [...data.cast].sort((a, b) => a.order - b.order).slice(0, 20);
 
   const directors = data.crew
     .filter((member) => member.job === "Director")

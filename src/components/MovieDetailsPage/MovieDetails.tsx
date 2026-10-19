@@ -77,13 +77,15 @@ function MovieDetails({ id }: { id: number }) {
             <MovieFacts credits={credits} movieDetails={movieDetails} />
           </div>
         </div>
-        {movieDetails.belongs_to_collection && (
-          <div className="col-span-2 col-start-1">
-            <CollectionCard collection={movieDetails.belongs_to_collection} />
-          </div>
-        )}
+
+        <div className="col-span-2 col-start-1">
+          <CollectionCard collection={movieDetails.belongs_to_collection} />
+        </div>
+        <div className="col-span-2 col-start-1">
+          <CastList cast={creditsQuery.data?.cast} />
+        </div>
       </div>
-      {/* <CastList cast={creditsQuery.data?.cast} /> */}
+
       <div className="h-300"></div>
     </>
   );

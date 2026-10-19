@@ -6,7 +6,11 @@ function CastList({ cast }: { cast: Cast[] | undefined }) {
     console.log(cast);
   }, [cast]);
 
-  return <h3>Cast</h3>;
+  return (
+    <>
+      <h2 className="text-foreground text-4xl font-medium">Cast</h2>
+    </>
+  );
 }
 
 export default CastList;
