@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import ArrowIcon from "./icons/ArrowIcon";
+import ArrowIcon from "./Icons/ArrowIcon";
 import clsx from "clsx";
 
 interface HorizontalScrollerProps {

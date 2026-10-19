@@ -1,5 +1,5 @@
 import type { Collection } from "../../types/movies";
-import ArrowIcon from "../icons/ArrowIcon";
+import ArrowIcon from "../Icons/ArrowIcon";
 
 interface CollectionCardProps {
   collection: Collection;

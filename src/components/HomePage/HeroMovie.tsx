@@ -1,9 +1,9 @@
 import type { MovieDetails, MovieSummary } from "../../types/movies";
 import { formatRating } from "../../utils/format";
-import BookmarkIcon from "../icons/BookmarkIcon";
-import InfoIcon from "../icons/InfoIcon";
-import PlayIcon from "../icons/PlayIcon";
-import StarIcon from "../icons/StarIcon";
+import BookmarkIcon from "../Icons/BookmarkIcon";
+import InfoIcon from "../Icons/InfoIcon";
+import PlayIcon from "../Icons/PlayIcon";
+import StarIcon from "../Icons/StarIcon";
 
 interface HeroMovieProps {
   heroMovieSum: MovieSummary | undefined;

@@ -1,8 +1,8 @@
-import BookmarkIcon from "../icons/BookmarkIcon";
-import ImdbLogo from "../icons/ImdbLogo";
-import PlayIcon from "../icons/PlayIcon";
-import RedirectIcon from "../icons/RedirectIcon";
-import ShareIcon from "../icons/ShareIcon";
+import BookmarkIcon from "../Icons/BookmarkIcon";
+import ImdbLogo from "../Icons/ImdbLogo";
+import PlayIcon from "../Icons/PlayIcon";
+import RedirectIcon from "../Icons/RedirectIcon";
+import ShareIcon from "../Icons/ShareIcon";
 
 interface PrimaryActionsProps {
   imdbId: string;

@@ -1,6 +1,6 @@
 import type { Cast } from "../../types/movies";
 import HorizontalScroller from "../HorizontalScroller";
-import UserIcon from "../icons/UserIcon";
+import UserIcon from "../Icons/UserIcon";
 
 function CastList({ cast }: { cast: Cast[] | undefined }) {
   return (

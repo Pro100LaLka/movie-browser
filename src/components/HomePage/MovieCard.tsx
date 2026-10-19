@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import type { MovieSummary } from "../../types/movies";
 import { formatRating } from "../../utils/format";
-import StarIcon from "../icons/StarIcon";
+import StarIcon from "../Icons/StarIcon";
 
 interface MovieCardProps {
   movie: MovieSummary;

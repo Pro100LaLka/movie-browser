@@ -1,5 +1,5 @@
 import { formatRating } from "../../utils/format";
-import StarIcon from "../icons/StarIcon";
+import StarIcon from "../Icons/StarIcon";
 
 interface RatingCardProps {
   voteAverage: number;
