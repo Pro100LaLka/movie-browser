@@ -20,15 +20,17 @@ function PrimaryActions({ imdbId }: PrimaryActionsProps) {
         Add to watchlist
       </button>
 
-      <a
-        href={`https://www.imdb.com/title/${imdbId}/`}
-        target="_blank"
-        className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active outline-primary flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-5 py-2.5 outline-offset-3 focus-visible:outline-2"
-      >
-        <ImdbLogo />
-        View on IMDb
-        <RedirectIcon />
-      </a>
+      {imdbId && (
+        <a
+          href={`https://www.imdb.com/title/${imdbId}/`}
+          target="_blank"
+          className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active outline-primary flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-5 py-2.5 outline-offset-3 focus-visible:outline-2"
+        >
+          <ImdbLogo />
+          View on IMDb
+          <RedirectIcon />
+        </a>
+      )}
       <button className="text-foreground hover:bg-surface border-border hover:border-border-hover active:bg-surface-hover active:border-border-active outline-primary flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-5 py-2.5 outline-offset-3 focus-visible:outline-2">
         <ShareIcon />
         Share

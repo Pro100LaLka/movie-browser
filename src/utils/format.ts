@@ -1,5 +1,5 @@
 export function formatRating(vote_average: number) {
-  return Math.round(vote_average * 10) / 10;
+  return (Math.round(vote_average * 10) / 10).toFixed(1);
 }
 
 export function formatMovieLength(runtime: number) {

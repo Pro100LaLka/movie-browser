@@ -24,7 +24,7 @@ function RatingCard({ voteAverage, voteCount }: RatingCardProps) {
           </p>
         )}
       </div>
-      <p className="text-muted">{voteCount} reviews</p>
+      <p className="text-muted">{voteCount.toLocaleString("en-US")} votes</p>
     </div>
   );
 }

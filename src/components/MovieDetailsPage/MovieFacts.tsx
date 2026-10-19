@@ -9,7 +9,7 @@ interface MovieFactsProps {
 function MovieFacts({ credits, movieDetails }: MovieFactsProps) {
   return (
     <ul className="border-border grid grid-cols-3 items-center gap-y-5 border-y py-5">
-      {credits?.directors.length !== 0 && (
+      {credits && credits?.directors.length !== 0 && (
         <li>
           <p className="text-muted text-sm">
             Director
@@ -20,7 +20,7 @@ function MovieFacts({ credits, movieDetails }: MovieFactsProps) {
           </p>
         </li>
       )}
-      {credits?.writers.length !== 0 && (
+      {credits && credits?.writers.length !== 0 && (
         <li>
           <p className="text-muted text-sm">
             Writer

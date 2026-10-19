@@ -27,8 +27,6 @@ function MovieDetails({ id }: { id: number }) {
     queryFn: () => fetchSimilarMovies(id),
   });
 
-  const credits = creditsQuery.data;
-
   if (movieDetailsQuery.isPending)
     return (
       <h1 className="text-foreground text-xl">Loading movie details...</h1>
@@ -50,6 +48,11 @@ function MovieDetails({ id }: { id: number }) {
     );
 
   const movieDetails = movieDetailsQuery.data;
+  const credits = creditsQuery.data;
+
+  const collection = movieDetails.belongs_to_collection;
+  const cast = credits?.cast ?? [];
+  const similar = similarQuery.data?.results ?? [];
 
   return (
     <>
@@ -69,7 +72,7 @@ function MovieDetails({ id }: { id: number }) {
             voteCount={movieDetails.vote_count}
           />
         </div>
-        <div className="col-span-1 col-start-2 flex flex-col justify-center">
+        <div className="col-span-1 col-start-2">
           <MovieHeading movieDetails={movieDetails} />
           <div className="mt-6">
             <PrimaryActions imdbId={movieDetails.imdb_id} />
@@ -79,19 +82,23 @@ function MovieDetails({ id }: { id: number }) {
           </div>
         </div>
 
-        {movieDetails.belongs_to_collection && (
+        {collection && (
           <div className="col-span-2 col-start-1 mt-10">
-            <CollectionCard collection={movieDetails.belongs_to_collection} />
+            <CollectionCard collection={collection} />
           </div>
         )}
-        <div className="col-span-2 col-start-1 mt-20">
-          <CastList cast={creditsQuery.data?.cast} />
-        </div>
-        <div className="col-span-2 col-start-1 mt-20">
-          <SimilarList movies={similarQuery.data?.results} />
-        </div>
+        {cast.length !== 0 && (
+          <div className="col-span-2 col-start-1 mt-20">
+            <CastList cast={cast} />
+          </div>
+        )}
+        {similar.length !== 0 && (
+          <div className="col-span-2 col-start-1 mt-20">
+            <SimilarList movies={similar} />
+          </div>
+        )}
       </div>
-      <div className="h-300"></div>
+      <div className="h-20"></div>
     </>
   );
 }
