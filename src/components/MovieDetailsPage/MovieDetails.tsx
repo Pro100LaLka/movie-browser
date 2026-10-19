@@ -84,6 +84,7 @@ function MovieDetails({ id }: { id: number }) {
         <div className="col-span-2 col-start-1">
           <CastList cast={creditsQuery.data?.cast} />
         </div>
+        <div className="col-span-2 col-start-1"></div>
       </div>
 
       <div className="h-300"></div>
