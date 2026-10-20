@@ -6,10 +6,10 @@ import clsx from "clsx";
 
 interface SortDropdownProps {
   sorting: MovieSort;
-  setSorting: (value: MovieSort) => void;
+  onSortingChange: (value: MovieSort) => void;
 }
 
-function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
+function SortDropdown({ sorting, onSortingChange }: SortDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
   }, [isOpen]);
 
   function handleOptionClick(sortOption: MovieSort) {
-    setSorting(sortOption);
+    onSortingChange(sortOption);
     setIsOpen(false);
   }
 
@@ -45,8 +45,7 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
       <button
         id="sorting"
         onClick={() => setIsOpen((prev) => !prev)}
-        // onChange={(e) => setSorting(e.target.value as MovieSort)}
-        className="text-foreground border-muted bg-background/80 focus:border-primary focus:ring-primary hover:bg-surface/80 flex w-40 cursor-pointer items-center justify-between rounded-lg border px-4 py-1.5 text-start focus:ring-2 focus-visible:outline-none"
+        className="text-foreground border-muted bg-background/80 focus:border-primary focus:ring-primary hover:bg-surface/80 flex w-40 cursor-pointer items-center justify-between rounded-lg border px-4 py-1.5 text-start capitalize focus:ring-2 focus-visible:outline-none"
       >
         {sorting}
         {isOpen ? <ArrowIcon direction="down" /> : <ArrowIcon direction="up" />}
@@ -58,7 +57,7 @@ function SortDropdown({ sorting, setSorting }: SortDropdownProps) {
               <button
                 onClick={() => handleOptionClick(sortOption)}
                 className={clsx(
-                  "text-foreground focus-visible:outline-primary flex w-full items-center gap-2 rounded-md px-3 py-2 text-start focus-visible:outline-2",
+                  "text-foreground focus-visible:outline-primary flex w-full items-center gap-2 rounded-md px-3 py-2 text-start capitalize focus-visible:outline-2",
                   sorting === sortOption ||
                     "hover:bg-surface-hover active:bg-surface-active cursor-pointer",
                   sorting === sortOption && "text-primary",

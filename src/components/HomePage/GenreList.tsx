@@ -7,7 +7,7 @@ interface GenreListProps {
   genres: Genre[] | undefined;
   isPending: boolean;
   error: Error | null;
-  selectedGenre: Genre;
+  selectedGenre: Genre | undefined;
   onGenreChange: (genre: Genre) => void;
 }
 
@@ -24,6 +24,7 @@ export function GenreList({
         {isPending && <li>Loading genres...</li>}
         {error && <li>Error while loading genres</li>}
         {genres &&
+          selectedGenre &&
           [unselectedGenre, ...genres].map((genre) => (
             <li key={genre.id} className="relative flex">
               <input
@@ -37,7 +38,7 @@ export function GenreList({
               <label
                 htmlFor={String(genre.id)}
                 className={clsx(
-                  "outline-primary snap-start rounded-full border px-5 py-1.5 whitespace-nowrap outline-offset-3 peer-focus-visible:outline-2",
+                  "outline-primary snap-start rounded-full border px-5 py-1.5 whitespace-nowrap outline-offset-3 select-none peer-focus-visible:outline-2",
                   genre.id === selectedGenre.id
                     ? "text-on-primary bg-primary border-transparent font-medium"
                     : "text-foreground bg-surface border-border hover:bg-surface-hover active:bg-surface-active cursor-pointer",

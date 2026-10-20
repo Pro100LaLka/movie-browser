@@ -20,11 +20,17 @@ function MovieDetails({ id }: { id: number }) {
     queryKey: ["credits", id],
     queryFn: () => fetchCredits(id),
     select: selectKeyCredits,
+
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60,
   });
 
   const similarQuery = useQuery({
     queryKey: ["movies", "similar", id],
     queryFn: () => fetchSimilarMovies(id),
+
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60,
   });
 
   if (movieDetailsQuery.isPending)

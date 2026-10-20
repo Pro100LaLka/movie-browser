@@ -10,6 +10,8 @@ function useMovieDetailsQuery(id: number | undefined) {
       return fetchMovieDetails(id);
     },
     enabled: id !== undefined,
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60,
   });
 }
 

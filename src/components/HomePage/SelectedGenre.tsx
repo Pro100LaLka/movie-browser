@@ -2,14 +2,14 @@ import { unselectedGenre } from "../../constants/movies";
 import type { Genre } from "../../types/movies";
 
 interface SelectedGenreProps {
-  selectedGenre: Genre;
+  selectedGenre: Genre | undefined;
   onGenreChange: (genre: Genre) => void;
 }
 
 function SelectedGenre({ selectedGenre, onGenreChange }: SelectedGenreProps) {
   return (
     <>
-      {selectedGenre.id !== 0 && (
+      {selectedGenre && selectedGenre.id !== 0 && (
         <div className="-mt-1 flex items-center">
           <p className="text-primary-hover text-xl">
             Genre: {selectedGenre.name}

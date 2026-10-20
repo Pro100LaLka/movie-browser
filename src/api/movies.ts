@@ -22,10 +22,10 @@ export async function fetchMovies(
   page: number,
 ): Promise<MoviesResponse> {
   let urlSorting = "";
-  if (sorting === "Trending") urlSorting = "&sort_by=popularity.desc";
-  if (sorting === "Most voted") urlSorting = "&sort_by=vote_count.desc";
-  if (sorting === "Highest rated")
-    urlSorting = "&sort_by=vote_average.desc&vote_count.gte=10000";
+  if (sorting === "trending") urlSorting = "&sort_by=popularity.desc";
+  if (sorting === "most voted") urlSorting = "&sort_by=vote_count.desc";
+  if (sorting === "highest rated")
+    urlSorting = "&sort_by=vote_average.desc&vote_count.gte=1000";
 
   const response = await fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}${urlSorting}&with_genres=${genre || ""}`,
