@@ -1,9 +1,9 @@
 import type { MovieDetails, MovieSummary } from "../../types/movies";
 import { formatRating } from "../../utils/format";
-import BookmarkIcon from "../icons/BookmarkIcon";
-import InfoIcon from "../icons/InfoIcon";
-import PlayIcon from "../icons/PlayIcon";
-import StarIcon from "../icons/StarIcon";
+import BookmarkIcon from "../Icons/BookmarkIcon";
+import InfoIcon from "../Icons/InfoIcon";
+import PlayIcon from "../Icons/PlayIcon";
+import StarIcon from "../Icons/StarIcon";
 
 interface HeroMovieProps {
   heroMovieSum: MovieSummary | undefined;
@@ -25,12 +25,12 @@ function HeroMovie({
           <p className="text-muted h-5 text-sm tracking-wider uppercase">
             {heroMovieDet?.tagline}
           </p>
-          {/* <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
-              {heroMovieSum.title}
-            </h1> */}
-          <h1 className="text-foreground font-barlow line-clamp-2 origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
+          <h1 className="text-foreground font-barlow origin-left scale-x-75 text-8xl font-bold tracking-tight text-balance uppercase">
             {heroMovieSum.title}
           </h1>
+          {/* <h1 className="text-foreground font-barlow line-clamp-2 origin-left scale-x-60 text-8xl font-bold text-balance uppercase">
+            {heroMovieSum.title}
+          </h1> */}
           <div className="text-foreground mt-2 flex gap-5">
             <p className="">{heroMovieSum.release_date.slice(0, 4)}</p>
             <span className="font-serif">|</span>
@@ -63,7 +63,9 @@ function HeroMovie({
               Add to watchlist
             </button>
             <button className="text-foreground hover:text-primary-hover active:text-primary-active outline-primary flex cursor-pointer items-center gap-4 self-stretch rounded-lg px-2 font-semibold outline-offset-3 focus-visible:outline-2">
-              <PlayIcon />
+              <div className="flex size-10 items-center justify-center rounded-full ring-2 ring-inherit ring-inset">
+                <PlayIcon />
+              </div>
               Watch trailer
             </button>
           </div>

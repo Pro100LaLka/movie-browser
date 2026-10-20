@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MOVIE_SORT_OPTIONS, type MovieSort } from "../../constants/movies";
-import ArrowIcon from "../icons/ArrowIcon";
-import CheckIcon from "../icons/CheckIcon";
+import ArrowIcon from "../Icons/ArrowIcon";
+import CheckIcon from "../Icons/CheckIcon";
 import clsx from "clsx";
 
 interface SortDropdownProps {

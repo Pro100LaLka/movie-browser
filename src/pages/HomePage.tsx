@@ -1,11 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { HomeBackground } from "../components/HomePage/HeroBackground";
-import {
-  fetchMovieDetails,
-  fetchMovieGenres,
-  fetchMovies,
-} from "../api/movies";
-import { useEffect, useState } from "react";
+import { fetchMovieGenres, fetchMovies } from "../api/movies";
+import { useState } from "react";
 import HeroMovie from "../components/HomePage/HeroMovie";
 import { unselectedGenre, type MovieSort } from "../constants/movies";
 import SortDropdown from "../components/HomePage/SortDropdown";
@@ -14,6 +10,7 @@ import MovieList from "../components/HomePage/MovieList";
 import type { Genre } from "../types/movies";
 import SelectedGenre from "../components/HomePage/SelectedGenre";
 import LoadMore from "../components/HomePage/LoadMore";
+import useMovieDetailsQuery from "../hooks/useMovieDetailsQuery";
 
 const heroMovieNumber = 0;
 
@@ -22,7 +19,7 @@ function HomePage() {
   const [sorting, setSorting] = useState<MovieSort>("Trending");
 
   const moviesQuery = useInfiniteQuery({
-    queryKey: ["movies", selectedGenre.id, sorting],
+    queryKey: ["movies", "infinite", selectedGenre.id, sorting],
     queryFn: ({ pageParam }) =>
       fetchMovies(selectedGenre.id, sorting, pageParam),
 
@@ -35,16 +32,7 @@ function HomePage() {
 
   const heroMovieSum = moviesQuery.data?.pages[0]?.results[heroMovieNumber];
 
-  const heroMovieQuery = useQuery({
-    queryKey: ["movie", heroMovieSum?.id],
-    queryFn: () => {
-      if (heroMovieSum?.id === undefined)
-        throw new Error("Missing hero movie ID");
-
-      return fetchMovieDetails(heroMovieSum.id);
-    },
-    enabled: heroMovieSum?.id !== undefined,
-  });
+  const heroMovieQuery = useMovieDetailsQuery(heroMovieSum?.id);
 
   const heroMovieDet = heroMovieQuery.data;
 
@@ -54,26 +42,12 @@ function HomePage() {
     staleTime: 1000 * 60 * 60 * 24 * 7,
   });
 
-  useEffect(() => {
-    console.log(genresQuery.data);
-  }, [genresQuery.data]);
-
-  useEffect(() => {
-    console.log(moviesQuery.data);
-  }, [moviesQuery.data]);
-
-  useEffect(() => {
-    console.log(heroMovieQuery.data);
-  }, [heroMovieQuery.data]);
-
   return (
     <>
-      {heroMovieSum?.backdrop_path && (
-        <HomeBackground
-          key={heroMovieSum?.backdrop_path}
-          src={heroMovieSum?.backdrop_path}
-        />
-      )}
+      <HomeBackground
+        key={heroMovieSum?.backdrop_path}
+        backdropPath={heroMovieSum?.backdrop_path}
+      />
       <div className="flex min-h-100 max-w-full flex-col items-start justify-center">
         <HeroMovie
           heroMovieSum={heroMovieSum}
@@ -95,7 +69,7 @@ function HomePage() {
           <SortDropdown sorting={sorting} setSorting={setSorting} />
         </div>
       </div>
-      <div className="mt-4 flex min-h-12 items-center pb-2">
+      <div className="mt-4 flex min-h-14 items-center pb-2">
         <GenreList
           genres={genresQuery.data?.genres}
           isPending={genresQuery.isPending}

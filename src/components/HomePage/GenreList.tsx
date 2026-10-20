@@ -19,7 +19,7 @@ export function GenreList({
   onGenreChange,
 }: GenreListProps) {
   return (
-    <HorizontalScroller>
+    <HorizontalScroller type="pill">
       <ul className="flex h-full w-max items-center gap-2 px-2">
         {isPending && <li>Loading genres...</li>}
         {error && <li>Error while loading genres</li>}

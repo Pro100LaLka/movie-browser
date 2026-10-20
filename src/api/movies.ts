@@ -1,5 +1,6 @@
 import type { MovieSort } from "../constants/movies";
 import type {
+  CreditsResponse,
   GenreResponse,
   MovieDetails,
   MoviesResponse,
@@ -33,9 +34,29 @@ export async function fetchMovies(
   return await response.json();
 }
 
-export async function fetchMovieDetails(id: number): Promise<MovieDetails> {
+export async function fetchMovieDetails(
+  movieId: number,
+): Promise<MovieDetails> {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`,
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`,
+  );
+  if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+  return await response.json();
+}
+
+export async function fetchCredits(movieId: number): Promise<CreditsResponse> {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`,
+  );
+  if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+  return await response.json();
+}
+
+export async function fetchSimilarMovies(
+  movieId: number,
+): Promise<MoviesResponse> {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${apiKey}`,
   );
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
   return await response.json();
