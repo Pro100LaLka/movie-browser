@@ -75,7 +75,8 @@ function HomePage() {
       fetchMovies(selectedGenre?.id, sorting, pageParam),
 
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage.page + 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
 
     enabled: !waitingForGenres,
 
@@ -138,6 +139,7 @@ function HomePage() {
       </div>
       <div className="flex h-30 items-center justify-center">
         <LoadMore
+          hasNextPage={moviesQuery.hasNextPage}
           isFetchingNextPage={moviesQuery.isFetchingNextPage}
           fetchNextPage={moviesQuery.fetchNextPage}
         />
