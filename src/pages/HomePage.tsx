@@ -144,7 +144,6 @@ function HomePage() {
           fetchNextPage={moviesQuery.fetchNextPage}
         />
       </div>
-      <div className="h-30"></div>
     </>
   );
 }
