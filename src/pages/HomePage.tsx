@@ -70,9 +70,9 @@ function HomePage() {
   }
 
   const moviesQuery = useInfiniteQuery({
-    queryKey: ["movies", "infinite", selectedGenre?.id, sorting],
+    queryKey: ["movies", "infinite", selectedGenre.id, sorting],
     queryFn: ({ pageParam }) =>
-      fetchMovies(selectedGenre?.id, sorting, pageParam),
+      fetchMovies(selectedGenre.id, sorting, pageParam),
 
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>

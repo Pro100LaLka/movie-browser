@@ -11,7 +11,7 @@ function RatingCard({ voteAverage, voteCount }: RatingCardProps) {
     <div className="bg-surface border-border flex items-center justify-between rounded-xl border p-4">
       <div>
         {voteAverage === 0 || voteCount === 0 ? (
-          <span>Not rated</span>
+          <span className="text-foreground text-lg">Not rated</span>
         ) : (
           <p className="flex items-center gap-3 text-xl">
             <StarIcon />

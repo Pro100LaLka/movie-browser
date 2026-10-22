@@ -1,9 +1,20 @@
 import { Link } from "react-router";
 import { HeaderNavLink } from "./HeaderNavLink";
+import useScrolled from "../../hooks/useScrolled";
+import clsx from "clsx";
 
 export function Header() {
+  const scrolled = useScrolled();
+
   return (
-    <header className="flex gap-25 pt-7 pb-4">
+    <header
+      className={clsx(
+        "sticky top-0 z-50 flex gap-25 px-15 py-7 transition duration-300",
+        scrolled
+          ? "bg-background/70 border-b border-white/10 backdrop-blur-lg backdrop-saturate-150"
+          : "",
+      )}
+    >
       <Link
         to="/"
         className="focus-visible:outline-primary flex items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-3"
