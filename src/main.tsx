@@ -4,15 +4,17 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ScrollToTop />
         <App />
-      </QueryClientProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </QueryClientProvider>
   </StrictMode>,
 );
