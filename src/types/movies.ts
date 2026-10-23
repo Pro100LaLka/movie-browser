@@ -1,3 +1,5 @@
+import type { Collection } from "./shared";
+
 export interface Genre {
   id: number;
   name: string;
@@ -5,13 +7,6 @@ export interface Genre {
 
 export interface GenreResponse {
   genres: Genre[];
-}
-
-export interface Collection {
-  id: number;
-  name: string;
-  backdrop_path: string;
-  poster_path: string;
 }
 
 interface MovieBase {
@@ -23,6 +18,7 @@ interface MovieBase {
   release_date: string;
   vote_average: number;
   vote_count: number;
+  original_language: string;
 }
 
 export interface MovieSummary extends MovieBase {
@@ -43,30 +39,6 @@ export interface MovieDetails extends MovieBase {
   budget: number;
   revenue: number;
   status: string;
-  original_language: string;
   production_companies: Array<{ name: string }>;
   belongs_to_collection: Collection;
-}
-
-export interface Cast {
-  id: number;
-  name: string;
-  profile_path: string;
-  character: string;
-  order: number;
-}
-
-export interface Crew {
-  id: number;
-  name: string;
-  profile_path: string;
-  job: string;
-  department: string;
-  popularity: number;
-}
-
-export interface CreditsResponse {
-  id: number;
-  cast: Cast[];
-  crew: Crew[];
 }

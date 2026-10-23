@@ -1,10 +1,10 @@
 import type { MovieSort } from "../constants/movies";
 import type {
-  CreditsResponse,
   GenreResponse,
   MovieDetails,
   MoviesResponse,
 } from "../types/movies";
+import type { CreditsResponse } from "../types/shared";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -28,7 +28,7 @@ export async function fetchMovies(
     urlSorting = "&sort_by=vote_average.desc&vote_count.gte=1000";
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}${urlSorting}&with_genres=${genre || ""}`,
+    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=${page}${urlSorting}&with_genres=${genre || ""}`,
   );
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
   return await response.json();

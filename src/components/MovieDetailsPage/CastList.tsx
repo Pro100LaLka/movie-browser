@@ -1,4 +1,4 @@
-import type { Cast } from "../../types/movies";
+import type { Cast } from "../../types/shared";
 import HorizontalScroller from "../HorizontalScroller";
 import UserIcon from "../Icons/UserIcon";
 

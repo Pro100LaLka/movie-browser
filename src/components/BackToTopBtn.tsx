@@ -23,7 +23,7 @@ function BackToTopBtn() {
       onClick={scrollUp}
       tabIndex={-1}
       className={clsx(
-        "text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active fixed top-7/8 right-8 z-100 size-15 rounded-full text-3xl shadow-[0_0_10px] shadow-black transition-opacity duration-200",
+        "text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active fixed right-8 bottom-8 z-100 size-15 rounded-full text-3xl shadow-[0_0_10px] shadow-black transition-opacity duration-200",
         visible ? "opacity-100" : "pointer-events-none opacity-0",
       )}
     >
