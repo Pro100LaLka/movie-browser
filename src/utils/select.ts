@@ -2,9 +2,7 @@ import type {
   Cast,
   CreditsResponse,
   Crew,
-  SearchMovie,
   SearchResponse,
-  SearchTV,
 } from "../types/shared";
 
 export interface Credits {

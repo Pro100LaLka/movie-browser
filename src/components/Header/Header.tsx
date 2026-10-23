@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { HeaderNavLink } from "./HeaderNavLink";
 import useScrolled from "../../hooks/useScrolled";
 import clsx from "clsx";
@@ -6,6 +6,8 @@ import Search from "./Search";
 
 export function Header() {
   const scrolled = useScrolled();
+
+  const { pathname } = useLocation();
 
   return (
     <header
@@ -33,7 +35,7 @@ export function Header() {
         </nav>
       </div>
 
-      <Search />
+      <Search key={pathname} />
     </header>
   );
 }
