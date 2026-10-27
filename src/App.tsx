@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import MoviesPage from "./pages/MoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<HomePage />}></Route>
         <Route path="movies" element={<MoviesPage />}></Route>
         <Route path="movies/:movieId" element={<MovieDetailsPage />}></Route>
+        <Route path="search" element={<SearchPage />}></Route>
         <Route path="*" element={<NotFoundPage />}></Route>
       </Route>
     </Routes>

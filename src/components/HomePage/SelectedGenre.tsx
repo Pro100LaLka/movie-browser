@@ -1,4 +1,4 @@
-import { unselectedGenre } from "../../constants/movies";
+import { UNSELECTED_GENRE } from "../../constants/movies";
 import type { Genre } from "../../types/movies";
 
 interface SelectedGenreProps {
@@ -16,13 +16,13 @@ function SelectedGenre({ selectedGenre, onGenreChange }: SelectedGenreProps) {
           </p>
           <button
             tabIndex={-1}
-            onClick={() => onGenreChange(unselectedGenre)}
+            onClick={() => onGenreChange(UNSELECTED_GENRE)}
             className="text-primary-hover hover hover:text-primary-active ml-1 size-8 text-2xl"
           >
             &times;
           </button>
           <button
-            onClick={() => onGenreChange(unselectedGenre)}
+            onClick={() => onGenreChange(UNSELECTED_GENRE)}
             className="text-foreground hover:text-muted outline-primary ml-3 rounded-md px-2 py-1 underline underline-offset-2 focus-visible:outline-2"
           >
             Clear filter

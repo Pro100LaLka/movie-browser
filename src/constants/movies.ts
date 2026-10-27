@@ -14,7 +14,9 @@ export function isMovieSort(value: string | null): value is MovieSort {
   return MOVIE_SORT_OPTIONS.some((sort) => sort === value);
 }
 
-export const unselectedGenre: Genre = {
+export const UNSELECTED_GENRE: Genre = {
   id: 0,
   name: "All",
 };
+
+export const MIN_SEARCH_LENGTH = 2;

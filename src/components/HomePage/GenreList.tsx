@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type { Genre } from "../../types/movies";
 import HorizontalScroller from "../HorizontalScroller";
-import { unselectedGenre } from "../../constants/movies";
+import { UNSELECTED_GENRE } from "../../constants/movies";
 
 interface GenreListProps {
   genres: Genre[] | undefined;
@@ -25,7 +25,7 @@ export function GenreList({
         {error && <li>Error while loading genres</li>}
         {genres &&
           selectedGenre &&
-          [unselectedGenre, ...genres].map((genre) => (
+          [UNSELECTED_GENRE, ...genres].map((genre) => (
             <li key={genre.id} className="relative flex">
               <input
                 type="radio"

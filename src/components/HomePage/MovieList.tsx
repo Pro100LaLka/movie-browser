@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 interface MovieListProps {
   movies: MovieSummary[] | undefined;
   isPending: boolean;
-  error: Error | null;
+  error: boolean;
 }
 
 function MovieList({ movies, isPending, error }: MovieListProps) {

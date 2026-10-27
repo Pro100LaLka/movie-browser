@@ -4,6 +4,7 @@ import LoadingDotsIcon from "../Icons/LoadingDotsIcon";
 import type { SearchMovie, SearchTV } from "../../types/shared";
 import SearchSuggestion from "./SearchSuggestion";
 import SearchIcon from "../Icons/SearchIcon";
+import { Link } from "react-router";
 
 interface SearchSuggestionsListProps {
   query: string;
@@ -23,7 +24,10 @@ function SearchSuggestionsList({
   refetch,
 }: SearchSuggestionsListProps) {
   return (
-    <ul className="bg-surface border-border text text-foreground absolute top-12 right-0 min-w-110 rounded-2xl border-2 pt-2">
+    <ul
+      onMouseDown={(e) => e.preventDefault()}
+      className="bg-surface border-border text text-foreground absolute top-12 right-0 min-w-110 rounded-2xl border-2 pt-2"
+    >
       {isPending && (
         <li className="text-muted flex items-center gap-4 px-7 py-4">
           <LoadingDotsIcon />
@@ -67,6 +71,18 @@ function SearchSuggestionsList({
                 <SearchSuggestion result={result} setFocused={setFocused} />
               </li>
             ))}
+            <li className="border-border mx-4 mt-2 flex items-center justify-between border-t-2 py-2.5">
+              <p className="flex items-center gap-3 text-lg">
+                <SearchIcon />
+                <span className="text-base">See all results for "{query}"</span>
+              </p>
+              <Link
+                to={`/search?q=${query.trim().replaceAll(" ", "%20")}`}
+                className="bg-surface-hover/50 hover:bg-surface-hover active:bg-surface-active border-border rounded-lg border-2 px-3 py-1"
+              >
+                Enter
+              </Link>
+            </li>
           </>
         ))}
     </ul>

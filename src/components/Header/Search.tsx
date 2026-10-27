@@ -4,14 +4,23 @@ import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { MIN_SEARCH_LENGTH } from "../../constants/movies";
 import useSearchQuery from "../../hooks/useSearchQuery";
 import SearchSuggestionsList from "./SearchSuggestionsList";
+import { useNavigate, useSearchParams } from "react-router";
 
 function Search() {
-  const [query, setQuery] = useState("");
-  const debouncedQuery = useDebouncedValue(query);
+  const [searchParams] = useSearchParams();
+
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const debouncedQuery = useDebouncedValue(query.trim());
 
   const [focused, setFocused] = useState<boolean>(false);
 
   const searchQuery = useSearchQuery(debouncedQuery);
+
+  const navigate = useNavigate();
+  function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key !== "Enter") return;
+    navigate(`/search?q=${query.trim().replaceAll(" ", "%20")}`);
+  }
 
   return (
     <div
@@ -30,6 +39,7 @@ function Search() {
           name="search-bar"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleEnter}
           autoComplete="off"
         />
       </label>
