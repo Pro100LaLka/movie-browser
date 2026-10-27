@@ -3,11 +3,11 @@ import { selectSearchMediaType } from "../utils/select";
 import { fetchSearchResults } from "../api/search";
 import { MIN_SEARCH_LENGTH } from "../constants/movies";
 
-function useSearchQuery(query: string) {
+function useSearchQuery(query: string, minLength = MIN_SEARCH_LENGTH) {
   return useQuery({
     queryKey: [query],
     queryFn: ({ signal }) => fetchSearchResults(query, signal),
-    enabled: query.length >= MIN_SEARCH_LENGTH,
+    enabled: query.length >= minLength,
 
     select: selectSearchMediaType,
 

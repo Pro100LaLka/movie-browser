@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-  base: "./",
+  base: "/movie-browser/",
   server: {
     host: "127.0.0.1",
   },

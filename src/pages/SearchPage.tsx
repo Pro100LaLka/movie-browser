@@ -8,7 +8,7 @@ function SearchPage() {
   const query = searchParams.get("q") ?? "";
   const navigate = useNavigate();
 
-  const searchQuery = useSearchQuery(query);
+  const searchQuery = useSearchQuery(query, 1);
   const movies = searchQuery.data?.results.filter(
     (result) => result.media_type === "movie",
   );
