@@ -6,9 +6,15 @@ export async function fetchSearchResults(
   query: string,
   signal?: AbortSignal,
 ): Promise<SearchResponse> {
-  const formatedQuery = query.trim().replaceAll(" ", "%20");
+  const params = new URLSearchParams({
+    api_key: apiKey,
+    language: "en-US",
+    page: "1",
+    query: query.trim(),
+  });
+
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${formatedQuery}&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/multi?${params}`,
     { signal },
   );
   if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);

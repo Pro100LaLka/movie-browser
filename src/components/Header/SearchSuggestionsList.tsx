@@ -77,7 +77,7 @@ function SearchSuggestionsList({
                 <span className="text-base">See all results for "{query}"</span>
               </p>
               <Link
-                to={`/search?q=${query.trim().replaceAll(" ", "%20")}`}
+                to={`/search?${new URLSearchParams({ q: query.trim() })}`}
                 className="bg-surface-hover/50 hover:bg-surface-hover active:bg-surface-active border-border rounded-lg border-2 px-3 py-1"
               >
                 Enter

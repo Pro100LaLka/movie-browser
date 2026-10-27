@@ -19,7 +19,7 @@ function Search() {
   const navigate = useNavigate();
   function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
-    navigate(`/search?q=${query.trim().replaceAll(" ", "%20")}`);
+    navigate(`/search?${new URLSearchParams({ q: query.trim() })}`);
   }
 
   return (
