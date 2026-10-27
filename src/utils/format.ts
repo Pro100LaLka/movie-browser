@@ -5,5 +5,5 @@ export function formatRating(vote_average: number) {
 export function formatMovieLength(runtime: number) {
   const minutes = runtime % 60;
   const hours = (runtime - minutes) / 60;
-  return `${hours}h ${minutes}m`;
+  return hours === 0 ? `${minutes} min` : `${hours}h ${minutes}m`;
 }

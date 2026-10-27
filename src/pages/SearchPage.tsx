@@ -21,9 +21,11 @@ function SearchPage() {
 
   return (
     <>
-      <h1 className="text-foreground text-4xl">Results for "{query}"</h1>
-      <p className="text-muted mt-1">{movies?.length ?? 0} results</p>
-      <div className="border-border mt-6 border-t pt-6">
+      <h1 className="text-foreground mt-5 text-4xl font-medium">
+        Results for "{query}"
+      </h1>
+      <p className="text-muted mt-2.5">{movies?.length ?? 0} results</p>
+      <div className="border-border mt-10 border-t pt-6">
         <MovieList
           movies={movies}
           isPending={searchQuery.isPending}

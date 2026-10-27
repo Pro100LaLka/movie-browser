@@ -31,34 +31,42 @@ function MovieFacts({ credits, movieDetails }: MovieFactsProps) {
           </p>
         </li>
       )}
-      <li>
-        <p className="text-muted text-sm">Release date</p>
-        <p className="text-foreground">
-          {new Date(movieDetails.release_date).toLocaleDateString("en-US", {
-            month: "short",
-            day: "2-digit",
-            year: "numeric",
-          })}
-        </p>
-      </li>
-      <li>
-        <p className="text-muted text-sm">Status</p>
-        <p className="text-foreground">{movieDetails.status}</p>
-      </li>
-      <li>
-        <p className="text-muted text-sm">Language</p>
-        <p className="text-foreground">
-          {new Intl.DisplayNames(["en"], { type: "language" }).of(
-            movieDetails.original_language,
-          )}
-        </p>
-      </li>
-      <li>
-        <p className="text-muted text-sm">Production</p>
-        <p className="text-foreground">
-          {movieDetails.production_companies[0]?.name}
-        </p>
-      </li>
+      {movieDetails.release_date && (
+        <li>
+          <p className="text-muted text-sm">Release date</p>
+          <p className="text-foreground">
+            {new Date(movieDetails.release_date).toLocaleDateString("en-US", {
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            })}
+          </p>
+        </li>
+      )}
+      {movieDetails.status && (
+        <li>
+          <p className="text-muted text-sm">Status</p>
+          <p className="text-foreground">{movieDetails.status}</p>
+        </li>
+      )}
+      {movieDetails.original_language && (
+        <li>
+          <p className="text-muted text-sm">Language</p>
+          <p className="text-foreground">
+            {new Intl.DisplayNames(["en"], { type: "language" }).of(
+              movieDetails.original_language,
+            )}
+          </p>
+        </li>
+      )}
+      {movieDetails.production_companies.length !== 0 && (
+        <li>
+          <p className="text-muted text-sm">Production</p>
+          <p className="text-foreground">
+            {movieDetails.production_companies[0]?.name}
+          </p>
+        </li>
+      )}
       {movieDetails.budget !== 0 && (
         <li>
           <p className="text-muted text-sm">Budget</p>

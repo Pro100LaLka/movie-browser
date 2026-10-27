@@ -17,9 +17,15 @@ function MovieHeading({ movieDetails }: MovieHeadingProps) {
         {movieDetails.title}
       </h1>
       <div className="text-foreground mt-6 flex items-center gap-5">
-        <p className="text-xl">{movieDetails.release_date.slice(0, 4)}</p>
-        <span className="text-muted font-sans text-xs font-light">|</span>
-        <p className="text-xl">{formatMovieLength(movieDetails.runtime)}</p>
+        {movieDetails.release_date && (
+          <p className="text-xl">{movieDetails.release_date.slice(0, 4)}</p>
+        )}
+        {movieDetails.release_date && movieDetails.runtime !== 0 && (
+          <span className="text-muted font-sans text-xs font-light">|</span>
+        )}
+        {movieDetails.runtime !== 0 && (
+          <p className="text-xl">{formatMovieLength(movieDetails.runtime)}</p>
+        )}
         <ul className="ml-4 flex gap-2">
           {movieDetails.genres.map((genre) => (
             <li

@@ -60,6 +60,8 @@ function MovieDetails({ id }: { id: number }) {
   const cast = credits?.cast ?? [];
   const similar = similarQuery.data?.results ?? [];
 
+  console.log(movieDetails);
+
   return (
     <>
       <MovieBackground
