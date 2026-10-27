@@ -1,4 +1,4 @@
-import type { Cast } from "../../types/movies";
+import type { Cast } from "../../types/shared";
 import HorizontalScroller from "../HorizontalScroller";
 import UserIcon from "../Icons/UserIcon";
 
@@ -9,7 +9,7 @@ function CastList({ cast }: { cast: Cast[] }) {
       <HorizontalScroller type="pill">
         <ul className="mt-6 flex gap-10 px-2">
           {cast.map((actor) => (
-            <li className="flex flex-col items-center" key={actor.id}>
+            <li className="flex max-w-40 flex-col items-center" key={actor.id}>
               <div className="text-border-hover bg-surface-hover ring-border-hover flex aspect-square w-40 items-center justify-center overflow-hidden rounded-full ring ring-inset">
                 <UserIcon />
                 {actor.profile_path && (

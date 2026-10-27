@@ -5,7 +5,7 @@ import HeroMovie from "../components/HomePage/HeroMovie";
 import {
   DEFAULT_MOVIE_SORT_OPTION,
   isMovieSort,
-  unselectedGenre,
+  UNSELECTED_GENRE,
   type MovieSort,
 } from "../constants/movies";
 import SortDropdown from "../components/HomePage/SortDropdown";
@@ -54,9 +54,9 @@ function HomePage() {
   const waitingForGenres = genreId !== null && genresQuery.isPending;
   const selectedGenre =
     genreId === null
-      ? unselectedGenre
+      ? UNSELECTED_GENRE
       : (genresQuery.data?.genres.find((genre) => genre.id === genreId) ??
-        unselectedGenre);
+        UNSELECTED_GENRE);
 
   function changeGenre(genre: Genre) {
     setSearchParams((prev) => {
@@ -92,6 +92,7 @@ function HomePage() {
 
   return (
     <>
+      <h1 className="sr-only">Discover movies</h1>
       <HomeBackground
         key={heroMovieSum?.backdrop_path}
         backdropPath={heroMovieSum?.backdrop_path}
@@ -134,7 +135,7 @@ function HomePage() {
         <MovieList
           movies={movies}
           isPending={moviesQuery.isPending}
-          error={moviesQuery.error}
+          error={moviesQuery.isError}
         />
       </div>
       <div className="flex h-30 items-center justify-center">

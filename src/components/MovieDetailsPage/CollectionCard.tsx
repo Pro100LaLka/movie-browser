@@ -1,4 +1,4 @@
-import type { Collection } from "../../types/movies";
+import type { Collection } from "../../types/shared";
 import ArrowIcon from "../Icons/ArrowIcon";
 
 interface CollectionCardProps {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useScrolled(threshold = 10) {
+function useScrolled(threshold = 10) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -13,3 +13,5 @@ export default function useScrolled(threshold = 10) {
 
   return scrolled;
 }
+
+export default useScrolled;

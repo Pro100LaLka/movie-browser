@@ -24,7 +24,7 @@ function HorizontalScroller({ children, type }: HorizontalScrollerProps) {
     if (!element) return;
 
     element.scrollBy({
-      left: direction * element.clientWidth * 0.8,
+      left: direction * element.clientWidth * 0.75,
       behavior: "auto",
     });
   }

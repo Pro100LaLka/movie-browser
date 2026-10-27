@@ -8,9 +8,11 @@ interface MovieHeadingProps {
 function MovieHeading({ movieDetails }: MovieHeadingProps) {
   return (
     <>
-      <p className="text-muted h-5 tracking-wider uppercase">
-        {movieDetails.tagline}
-      </p>
+      {movieDetails.tagline && (
+        <p className="text-muted h-5 tracking-wider uppercase">
+          {movieDetails.tagline}
+        </p>
+      )}
       <h1 className="text-foreground font-barlow mt-2 origin-left text-8xl font-bold tracking-tight text-balance uppercase">
         {movieDetails.title}
       </h1>

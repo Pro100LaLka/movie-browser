@@ -1,4 +1,9 @@
-import type { Cast, CreditsResponse, Crew } from "../types/movies";
+import type {
+  Cast,
+  CreditsResponse,
+  Crew,
+  SearchResponse,
+} from "../types/shared";
 
 export interface Credits {
   id: number;
@@ -30,4 +35,13 @@ export function selectKeyCredits(data: CreditsResponse): Credits {
     .slice(0, 2);
 
   return { id, cast, directors, writers };
+}
+
+export function selectSearchMediaType(data: SearchResponse) {
+  return {
+    ...data,
+    results: data.results
+      .filter((result) => result.media_type !== "person")
+      .sort((a, b) => b.vote_count - a.vote_count),
+  };
 }
